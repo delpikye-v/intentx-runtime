@@ -1,4 +1,4 @@
-import { Scope } from "intentx-state-z";
+import { Scope } from "intentx-core-z";
 import { LogicRuntime, ComputedDef, InferComputed } from "../core/runtime";
 import { EffectDef } from "../core/effect";
 import { IntentBus } from "../core/intentBus";

@@ -1,4 +1,4 @@
-import { Scope } from "intentx-state-z";
+import { Scope } from "intentx-core-z";
 export type RuntimeIntentContext<S, P = any> = {
     payload: P;
     state: () => Readonly<S>;

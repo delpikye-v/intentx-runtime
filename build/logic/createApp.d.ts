@@ -9,6 +9,7 @@ type AppReturn<M extends LogicMap> = {
         [K in keyof M]: ReturnType<M[K]["create"]>;
     };
 };
+export declare const createIntentBus: () => IntentBus<any>;
 export declare function createApp<const M extends LogicMap>(config: {
     name?: string;
     logics: M;
