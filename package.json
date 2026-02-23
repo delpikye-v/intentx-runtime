@@ -1,11 +1,12 @@
 {
   "name": "intentx-runtime",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Intent-first business logic runtime. Deterministic, headless, and framework-agnostic.",
   "license": "MIT",
   "author": "Delpi.Kye",
   "sideEffects": false,
 
+  "type": "module",
   "main": "build/index.cjs.js",
   "module": "build/index.esm.js",
   "types": "build/index.d.ts",
