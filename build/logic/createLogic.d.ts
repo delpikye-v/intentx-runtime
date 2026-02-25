@@ -23,7 +23,7 @@ export declare function createLogic<S extends object, C extends ComputedDef<S>, 
     computed?: C;
     intents?: (bus: {
         on: LogicRuntime<S, C, any>["onIntent"];
-        effect: (type: string, eff: EffectDef) => void;
+        effect: (type: string, eff: EffectDef<S, any>) => void;
     }) => void;
     actions: ActionsDef;
 }): LogicFactory<S, C, {

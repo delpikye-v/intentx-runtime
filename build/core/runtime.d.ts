@@ -31,13 +31,13 @@ export declare class LogicRuntime<S extends object, C extends ComputedDef<S>, A 
     subscribe: (fn: () => void) => () => boolean;
     get state(): Readonly<S & InferComputed<C>>;
     get computed(): Readonly<InferComputed<C>>;
-    batch(fn: () => void): void;
-    onError(handler: (error: unknown, context: {
+    batch: (fn: () => void) => void;
+    onError: (handler: (error: unknown, context: {
         type: string;
         payload: any;
-    }) => void): () => boolean;
-    getComputedKey<K extends keyof InferComputed<C>>(key: K): InferComputed<C>[K];
-    getComputed(snapshot: Readonly<S & InferComputed<C>>): Readonly<InferComputed<C>>;
+    }) => void) => () => boolean;
+    getComputedKey: <K extends keyof InferComputed<C>>(key: K) => InferComputed<C>[K];
+    getComputed: (snapshot: Readonly<S & InferComputed<C>>) => Readonly<InferComputed<C>>;
     private setStateInternal;
     onIntent: <P = any>(type: string, handler: (context: {
         payload: P;
@@ -46,11 +46,11 @@ export declare class LogicRuntime<S extends object, C extends ComputedDef<S>, A 
         signal: AbortSignal;
         setState(fn: (draft: S) => void): void;
         emit<T = any>(type: string, payload?: T): Promise<void>;
-    }) => any) => (() => void);
-    once<P = any>(type: string, handler: Parameters<typeof this.onIntent>[1]): void;
-    takeLeading<P = any>(type: string, handler: Parameters<typeof this.onIntent>[1]): void;
-    throttle<P = any>(type: string, ms: number, handler: Parameters<typeof this.onIntent>[1]): void;
-    useEffect(type: string, eff: EffectDef): void;
+    }) => any) => () => void;
+    once: <P = any>(type: string, handler: Parameters<typeof this.onIntent>[1]) => void;
+    takeLeading: <P = any>(type: string, handler: Parameters<typeof this.onIntent>[1]) => void;
+    throttle: <P = any>(type: string, ms: number, handler: Parameters<typeof this.onIntent>[1]) => void;
+    useEffect: <P = any>(type: string, eff: EffectDef<S, P>) => void;
     emit: <P = any>(type: string, payload?: P) => Promise<void>;
-    attachComputed<K extends keyof C & string>(key: K, compute: C[K]): void;
+    attachComputed: <K extends keyof C & string>(key: K, compute: C[K]) => void;
 }

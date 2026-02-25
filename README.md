@@ -4,7 +4,7 @@
 
 <a href="https://codesandbox.io/p/devbox/rq72pf" target="_blank">LIVE EXAMPLE</a>
 
- A small, framework-agnostic runtime for structuring domain logic.  
+ A small, framework-agnostic runtime for structuring domain logic.
 
 > Encourages isolated modules and communication through a shared intent bus.
 
@@ -24,14 +24,6 @@ This is a **logic runtime engine**.
 
 ---
 
-## 📦 Installation
-
-```bash
-npm install intentx-runtime
-```
-
----
-
 ## 🧠 Mental Model
 
 ```
@@ -47,9 +39,19 @@ UI / HTTP / Queue / Cron
         ↓
 computed (derived state) / subscribers
 ```
+
 ---
 
-## 🧩 Single Logic Example
+## 📦 Installation
+
+```bash
+npm install intentx-runtime
+```
+
+---
+
+
+## 🧩 Single Logic
 
 #### userLogic.ts
 
@@ -95,7 +97,7 @@ export const userLogic = createLogic({
 
 ---
 
-## 🧩 Multi-Logic Example (Shared Bus)
+## 🧩 Multi-Logic (Shared Bus)
 
 #### cartLogic.ts
 
@@ -247,7 +249,9 @@ You can:
 
 ---
 
-## 🔍 Comparison With Other Libraries
+## 🔍 Comparison
+
+This is not about “better” — it's about architectural intent.
 
 | Criteria                | 🚀 intentx-runtime       | 🧰 Redux Toolkit  | 🐻 Zustand      | ⚡ MobX           | 🎛️ XState        |
 | ----------------------- | ----------------------- | ----------------  | --------------- | ---------------- | ---------------- |

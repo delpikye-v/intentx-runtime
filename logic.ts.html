@@ -1,0 +1,83 @@
+import { createLogic, effect } from "./"
+
+export const authLogic = createLogic({
+  name: "auth",
+
+  state: {
+    user: null as null | { id: string; name: string },
+    loading: false,
+    error: null as string | null,
+  },
+
+  computed: {
+    isLoggedIn: ({ state }) => !!state.user,
+  },
+
+  intents: (bus) => {
+
+    /* ---------- pure state intents ---------- */
+
+    bus.on("login:start", ({ setState }) => {
+      setState(s => {
+        s.loading = true
+        s.error = null
+      })
+    })
+
+    bus.on<{ id: string; name: string }>(
+      "login:success",
+      ({ payload, setState }) => {
+        setState(s => {
+          s.user = payload
+          s.loading = false
+        })
+      }
+    )
+
+    bus.on<string>("login:error", ({ payload, setState }) => {
+      setState(s => {
+        s.error = payload
+        s.loading = false
+      })
+    })
+
+    /* ---------- async effect ---------- */
+
+    bus.effect(
+      "login:start",
+      effect(async ({ payload, emit }) => {
+        try {
+          await new Promise(r => setTimeout(r, 1000))
+
+          // fake API
+          if (payload.password !== "123") {
+            throw new Error("Invalid password")
+          }
+
+          await emit("login:success", {
+            id: "u1",
+            name: payload.username,
+          })
+
+        } catch (err: any) {
+          await emit("login:error", err.message)
+        }
+      }).takeLatest()
+    )
+  },
+
+  actions: {
+    login({ emit }) {
+      return (username: string, password: string) =>
+        emit("login:start", { username, password })
+    }
+  }
+})
+
+const runtime = authLogic.create()
+
+runtime.subscribe(() => {
+  console.log("state:", runtime.state)
+})
+
+runtime.actions.login("john", "123")

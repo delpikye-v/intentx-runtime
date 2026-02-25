@@ -1,0 +1,128 @@
+import { createBackendRuntime } from "intentx-runtime"
+
+/* ======================================================
+ * State
+ * ==================================================== */
+
+type State = {
+  user: string | null
+  count: number
+  loading: boolean
+}
+
+/* ======================================================
+ * Intent Map
+ * ==================================================== */
+
+type Intents = {
+  login: string
+  inc: number
+  "inc-async": number
+}
+
+/* ======================================================
+ * Runtime
+ * ==================================================== */
+
+const runtime = createBackendRuntime({
+  user: null,
+  count: 0,
+  loading: false,
+})
+
+/* ======================================================
+ * Intents (STATE LOGIC)
+ * ==================================================== */
+
+runtime.registerIntents({
+
+  async login(ctx, username) {
+
+    ctx.set({ loading: true })
+
+    await new Promise(r => setTimeout(r, 1000))
+
+    if (ctx.signal.aborted) return
+
+    ctx.set({
+      user: username,
+      loading: false,
+    })
+  },
+
+  inc(ctx, n) {
+
+    ctx.set({
+      count: ctx.state().count + n,
+    })
+
+  },
+
+  async "inc-async"(ctx, n) {
+
+    ctx.set({ loading: true })
+
+    await new Promise(r => setTimeout(r, 1000))
+
+    ctx.set({
+      count: ctx.state().count + n,
+      loading: false,
+    })
+  }
+
+})
+
+/* ======================================================
+ * Effects (SIDE EFFECT ENGINE)
+ * ==================================================== */
+
+runtime.effect("inc-async", async (ctx, payload) => {
+
+  console.log(
+    "[effect] inc-async done → count =",
+    ctx.state().count
+  )
+
+})
+
+runtime.effect("login", async (ctx, username) => {
+
+  console.log("[effect] user logged in:", username)
+
+})
+
+/* ======================================================
+ * Hooks
+ * ==================================================== */
+
+runtime.onBefore((intent, payload) => {
+  console.log("→ BEFORE:", intent, payload)
+})
+
+runtime.onAfter((intent) => {
+  console.log("→ AFTER:", intent)
+})
+
+runtime.onError((err, intent) => {
+  console.error("❌ ERROR in", intent, err)
+})
+
+/* ======================================================
+ * Demo
+ * ==================================================== */
+
+async function main() {
+
+  console.log("Initial:", runtime.state())
+
+  await runtime.emit("login", "Delpi")
+  console.log("After login:", runtime.state())
+
+  await runtime.emit("inc", 5)
+  console.log("After inc:", runtime.state())
+
+  await runtime.emit("inc-async", 3)
+  console.log("Final:", runtime.state())
+}
+
+main()
