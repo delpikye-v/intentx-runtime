@@ -1,6 +1,6 @@
 {
   "name": "intentx-runtime",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Intent-first business logic runtime. Deterministic, headless, and framework-agnostic.",
   "license": "MIT",
   "author": "Delpi.Kye",
@@ -19,8 +19,8 @@
   },
   "files": [
     "build",
-    "test.ts.html",
-    "backend.ts.html",
+    "frontend.ts.text",
+    "backend.ts.text",
     "README.md"
   ],
 

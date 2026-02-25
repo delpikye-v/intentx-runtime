@@ -1,4 +1,8 @@
-# 🌐 intentx-runtime
+<p align="center">
+  <img src="https://raw.githubusercontent.com/delpikye-v/intentx-runtime/main/intentx-runtime.png" width="360" height="240" />
+</p>
+
+## 🌐 intentx-runtime
 
 [![NPM](https://img.shields.io/npm/v/intentx-runtime.svg)](https://www.npmjs.com/package/intentx-runtime) ![Downloads](https://img.shields.io/npm/dt/intentx-runtime.svg)
 

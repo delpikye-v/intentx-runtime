@@ -12,4 +12,5 @@ export declare class IntentBus<S> {
     effect: <P = any>(type: string, eff: EffectDef<S, P>) => void;
     on: <P = any>(type: string, handler: IntentHandler<S, P>) => (() => void);
     emit: (type: string, context: IntentContext<S>) => Promise<void>;
+    clear: () => void;
 }

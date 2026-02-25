@@ -11,5 +11,5 @@ export type Devtools = {
     timeline: Timeline;
     wrap(): void;
 };
-export declare function attachDevtools(target: RuntimeLike): Devtools;
+export declare function attachDevtools(target: RuntimeLike, scopeName?: string): Devtools;
 export {};
