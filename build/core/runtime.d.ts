@@ -41,7 +41,7 @@ export declare class LogicRuntime<S extends object, C extends ComputedDef<S>, A 
         payload: any;
     }) => void) => () => boolean;
     getComputedKey: <K extends keyof InferComputed<C>>(key: K) => InferComputed<C>[K];
-    getComputed: (snapshot: Readonly<S & InferComputed<C>>) => Readonly<InferComputed<C>>;
+    getComputed: () => Readonly<InferComputed<C>>;
     private setStateInternal;
     onIntent: <P = any>(type: string, handler: (context: {
         payload: P;
