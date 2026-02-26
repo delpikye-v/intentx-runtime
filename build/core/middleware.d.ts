@@ -1,5 +1,5 @@
-import { EffectDef, EffectMode } from "./effect";
-import { IntentContext } from "./types";
+import type { EffectDef, EffectMode } from "./effect";
+import type { IntentContext } from "./types";
 export type IntentExecutionFrame<S> = {
     context: IntentContext<S>;
     effects: EffectDef<S, any>[];

@@ -1,11 +1,10 @@
 {
   "name": "intentx-runtime",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Intent-first business logic runtime. Deterministic, headless, and framework-agnostic.",
   "license": "MIT",
   "author": "Delpi.Kye",
   "sideEffects": false,
-
   "type": "module",
   "main": "build/index.cjs.js",
   "module": "build/index.esm.js",
@@ -19,18 +18,15 @@
   },
   "files": [
     "build",
-    "frontend.ts.text",
-    "backend.ts.text",
+    "example",
     "README.md"
   ],
-
   "scripts": {
     "clean": "rimraf build",
     "build": "rollup -c",
     "cb": "npm run clean && npm run build",
     "prepublishOnly": "npm run cb"
   },
-
   "repository": {
     "type": "git",
     "url": "https://github.com/delpikye-v/intentx-runtime.git"
@@ -39,7 +35,6 @@
   "bugs": {
     "url": "https://github.com/delpikye-v/intentx-runtime/issues"
   },
-
   "keywords": [
     "intent-first",
     "intent-runtime",
@@ -56,7 +51,6 @@
     "takeLatest",
     "state-management"
   ],
-
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
@@ -69,8 +63,8 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "intentx-core-z": "^2.2.1",
-    "intentx-state-z": "^0.2.0"
+    "intentx-core-z": ">=2.2.1",
+    "intentx-state-z": ">=0.2.0"
   },
   "engines": {
     "node": ">=18"

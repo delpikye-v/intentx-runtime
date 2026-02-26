@@ -1,4 +1,4 @@
-import { BackendContext } from "../core/types";
+import type { BackendContext } from "../core";
 export type BackendIntentMap = Record<string, any>;
 export type BackendIntent<S, P> = (context: BackendContext<S>, payload: P) => void | Promise<void>;
 export type BackendIntents<S, M extends BackendIntentMap> = {

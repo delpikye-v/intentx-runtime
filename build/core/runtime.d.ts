@@ -1,12 +1,7 @@
-import { Scope } from "intentx-core-z";
+import type { Scope } from "intentx-state-z";
 import { IntentBus } from "./intentBus";
-import { EffectDef } from "./effect";
-export type ComputedDef<S> = Record<string, (context: {
-    state: Readonly<S>;
-}) => any>;
-export type InferComputed<C> = {
-    [K in keyof C]: C[K] extends (...args: any[]) => infer R ? R : never;
-};
+import type { EffectDef } from "./effect";
+import type { ComputedDef, InferComputed } from "./types";
 export declare class LogicRuntime<S extends object, C extends ComputedDef<S>, A extends Record<string, any>> {
     readonly scope: Scope;
     private stateAtoms;

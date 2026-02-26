@@ -1,19 +1,7 @@
-import { Scope } from "intentx-core-z";
-import { LogicRuntime, ComputedDef, InferComputed } from "../core/runtime";
-import { EffectDef } from "../core/effect";
-import { IntentBus } from "../core/intentBus";
-export type LogicActions = Record<string, (...args: any[]) => any>;
-export type LogicFactory<S extends object, C extends ComputedDef<S>, A extends LogicActions> = {
-    name?: string;
-    create(scope?: Scope, sharedBus?: IntentBus<any>): LogicRuntime<S, C, A>;
-    createShareBus(scope: Scope, sharedBus: IntentBus<any>): LogicRuntime<S, C, A>;
-    createIsolated(scope?: Scope): LogicRuntime<S, C, A>;
-};
-export type ExtractLogicTypes<T> = T extends LogicFactory<infer S, infer C, infer A> ? {
-    state: Readonly<S & InferComputed<C>>;
-    actions: A;
-    emit: (intent: string, payload?: any) => Promise<void>;
-} : never;
+import { LogicRuntime } from "../core/runtime";
+import type { EffectDef } from "../core/effect";
+import type { ComputedDef, InferComputed } from "../core";
+import type { LogicFactory } from "./types";
 export declare function createLogic<S extends object, C extends ComputedDef<S>, ActionsDef extends Record<string, (context: {
     emit: LogicRuntime<S, C, any>["emit"];
     getState: () => Readonly<S & InferComputed<C>>;

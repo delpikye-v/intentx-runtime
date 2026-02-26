@@ -1,4 +1,4 @@
-import { createLogic, effect } from "./"
+import { createLogic, effect } from "intentx-runtime"
 
 export const authLogic = createLogic({
   name: "auth",

@@ -1,6 +1,6 @@
-import { IntentMiddleware } from "./middleware";
-import { EffectDef, EffectMode } from "./effect";
-import { IntentContext } from "./types";
+import type { IntentMiddleware } from "./middleware";
+import type { EffectDef, EffectMode } from "./effect";
+import type { IntentContext } from "./types";
 export type IntentHandler<S, P = any> = (context: IntentContext<S, P>) => void | Promise<void>;
 export declare class IntentBus<S> {
     private handlers;
@@ -14,3 +14,4 @@ export declare class IntentBus<S> {
     emit: (type: string, context: IntentContext<S>) => Promise<void>;
     clear: () => void;
 }
+export declare const createIntentBus: <S = any>() => IntentBus<S>;

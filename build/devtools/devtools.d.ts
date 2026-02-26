@@ -1,4 +1,4 @@
-import { Timeline } from "./timeline";
+import type { Timeline } from "./timeline";
 type RuntimeLike = {
     scope: {
         name: string;

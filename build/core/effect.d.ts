@@ -1,4 +1,4 @@
-import { EffectContext } from "./types";
+import type { EffectContext } from "./types";
 export type EffectStrategy = "default" | "takeLatest" | "debounce";
 export type EffectMode = "sequential" | "parallel" | "race" | "allSettled";
 export type EffectHandler<S, P = unknown> = (context: EffectContext<S, P>) => void | Promise<void>;
